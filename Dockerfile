@@ -19,8 +19,8 @@ RUN mkdir -p /opt/sonatype/nexus \
   && curl --fail --silent --location --retry 3 \
     https://download.sonatype.com/nexus/oss/nexus-${NEXUS_VERSION}-bundle.tar.gz \
   | gunzip \
-  | tar x -C /tmp nexus-${NEXUS_VERSION} \
-  && mv /tmp/nexus-${NEXUS_VERSION}/* /opt/sonatype/nexus/ \
+  | tar x -C /tmp \
+  && mv /tmp/nexus-*/* /opt/sonatype/nexus/ \
   && rm -rf /tmp/nexus-${NEXUS_VERSION}
 
 RUN useradd -r -u 200 -m -c "nexus role account" -d ${SONATYPE_WORK} -s /bin/false nexus
